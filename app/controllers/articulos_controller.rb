@@ -1,4 +1,4 @@
-class ArticulosControllerController < ApplicationController
+class ArticulosController < ApplicationController
 	def index
 	  @articulos = Articulo.search(params[:search])
 	end
