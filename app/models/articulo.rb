@@ -1,7 +1,11 @@
 class Articulo < ActiveRecord::Base
 	
-	def self.search(search)
-		where("codigo LIKE ? OR desc LIKE ?", "%#{search}%", "%#{search}%")
+	def self.search(descripcion, proveedor = nil)
+		query = where("(codigo LIKE ? OR desc LIKE ?)", "%#{descripcion}%", "%#{descripcion}%")
+    if proveedor.present?
+      query = query.where(proveedor: proveedor)
+    end
+    query
 	end
 
 end

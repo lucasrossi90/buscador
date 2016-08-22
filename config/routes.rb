@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   get 'articulos/upload', to: 'articulos#upload'
+  get 'articulos/resultado_articulos', to: 'articulos#resultado_articulos'
+  post 'articulos/import_excel', to: 'articulos#import_excel'
+
   resources :articulos
   root "articulos#index"
 

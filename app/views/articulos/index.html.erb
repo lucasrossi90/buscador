@@ -5,22 +5,27 @@
 </head>
 <body>
 	<%= form_tag(articulos_path, :method => "get", id: "search-form") do %>
-	<%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Search" %>
+  <%= text_field_tag :search, params[:search] %>
+	<%= select_tag :proveedor, options_for_select(['A', 'B']) %>
 	<% end %>
 
-	<% if @articulos.present? %>
-		<table class="table table-striped">
-			<tr>
-				<th>Codigo</th>
-				<th>Descripción</th>
-			</tr>
-	  		<%= render @articulos %>
-		</table>
-	<% else %>
-	  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-	<% end %>
+  <div id="resultado"></div>
 
+  <script type="text/javascript">
+    function actualizarResultados() {
+      $.get('/articulos/resultado_articulos', { search: $('#search').val() })
+      .success(function(response){
+        $('#resultado').html(response);
+      });
+    }
+    actualizarResultados();
+    $('#search').keyup(function() {
+      actualizarResultados();
+    });
+    $('#proveedor').change(function() {
+      actualizarResultados();
+    });
+  </script>
 </body>
 </html>
 
