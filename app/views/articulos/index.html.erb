@@ -1,7 +1,25 @@
-<% form_tag articulos_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<%= form_tag(articulos_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search" %>
+	<% end %>
+
+	<% if @articulos.present? %>
+		<table class="table table-striped">
+			<tr>
+				<th>Codigo</th>
+			</tr>
+	  		<%= render @articulos %>
+		</table>
+	<% else %>
+	  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+	<% end %>
+
+</body>
+</html>
 
