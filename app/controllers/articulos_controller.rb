@@ -37,5 +37,6 @@ class ArticulosController < ApplicationController
   end
 
   def upload
-	end
+  	@listas = Listum.all
+  	end
 end

@@ -23,6 +23,13 @@ gem "twitter-bootstrap-rails"
 gem 'ruby-ole'
 gem 'spreadsheet'
 
+#admin
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
+gem 'cancan' # or cancancan
+gem 'draper'
+gem 'pundit'
+
 #upload
 gem 'carrierwave'
 gem 'boostrap-sass'

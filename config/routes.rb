@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   get 'articulos/upload', to: 'articulos#upload'
   get 'articulos/resultado_articulos', to: 'articulos#resultado_articulos'
   post 'articulos/import_excel', to: 'articulos#import_excel'
