@@ -13,6 +13,6 @@ ActiveAdmin.register Listum do
 #   permitted
 # end
 
-permit_params :nombre, :proveedor_id
+  permit_params :nombre, :proveedor_id, :cod, :desc, :precio, :rubro, :hoja
 
 end

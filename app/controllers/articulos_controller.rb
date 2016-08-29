@@ -20,22 +20,26 @@ class ArticulosController < ApplicationController
   end
 
   def import_excel
-  		nro_lista = params[:lista]
-  		@lista = Lista.find(nro_lista)
-		subido = params[:file]
-		contenido = subido.read
-		book = Spreadsheet.open(StringIO.new(contenido))
-    # byebug
-		sheet = book.worksheet(@lista.hoja)
-		sheet.each do |row|
-			Articulo.create(codigo:row[@lista.cod], 
-							desc:row[@lista.desc], 
-							precio:row[@lista.precio], 
-							proveedor: @lista.proveedor_id, 
-							rubro:row[@lista.rubro], 
-							fecha_precio: Date.today,
-							id_lista: nro_lista)
-		end
+		nro_lista = params[:lista]
+		@lista = Lista.find(nro_lista)
+    ActiveRecord::Base.transaction do
+      if @lista.articulos.any?
+        @lista.articulos.destroy_all
+      end
+  		subido = params[:file]
+  		contenido = subido.read
+  		book = Spreadsheet.open(StringIO.new(contenido))
+  		sheet = book.worksheet(@lista.hoja)
+  		sheet.each do |row|
+        @lista.articulos.create(
+                codigo:row[@lista.cod], 
+  							desc:row[@lista.desc], 
+  							precio:row[@lista.precio], 
+  							proveedor: @lista.proveedor_id, 
+  							rubro:row[@lista.rubro], 
+  							fecha_precio: Date.today)
+      end
+  	end
     render text: 'Listo'
   end
 

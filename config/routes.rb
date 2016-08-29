@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'articulos/import_excel', to: 'articulos#import_excel'
 
   resources :articulos
+  resources :lista
   root "articulos#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
