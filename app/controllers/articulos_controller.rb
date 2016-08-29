@@ -7,6 +7,7 @@ class ArticulosController < ApplicationController
 	end
 
 	def index
+		@proveedores = Proveedor.all
 	end
 
   def resultado_articulos
@@ -19,19 +20,21 @@ class ArticulosController < ApplicationController
   end
 
   def import_excel
+  		nro_lista = params[:lista]
+  		@lista = Lista.find(nro_lista)
 		subido = params[:file]
 		contenido = subido.read
 		book = Spreadsheet.open(StringIO.new(contenido))
     # byebug
-		sheet = book.worksheet(0)
+		sheet = book.worksheet(@lista.hoja)
 		sheet.each do |row|
-			Articulo.create(codigo:row[0], 
-							desc:row[1], 
-							precio:row[2], 
-							proveedor:'CDC', 
-							rubro:row[6], 
+			Articulo.create(codigo:row[@lista.cod], 
+							desc:row[@lista.desc], 
+							precio:row[@lista.precio], 
+							proveedor: @lista.proveedor_id, 
+							rubro:row[@lista.rubro], 
 							fecha_precio: Date.today,
-							id_lista: 1)
+							id_lista: nro_lista)
 		end
     render text: 'Listo'
   end

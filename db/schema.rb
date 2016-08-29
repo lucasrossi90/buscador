@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825052846) do
+ActiveRecord::Schema.define(version: 20160829154830) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -41,10 +41,22 @@ ActiveRecord::Schema.define(version: 20160825052846) do
   end
 
   create_table "lista", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "nombre"
+    t.integer  "proveedor_id"
+    t.integer  "cod"
+    t.integer  "desc"
+    t.integer  "precio"
+    t.string   "rubro"
+    t.integer  "hoja"
+  end
+
+  create_table "proveedors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "nombre"
-    t.string   "proveedor"
+    t.integer  "desc"
   end
 
   create_table "users", force: :cascade do |t|

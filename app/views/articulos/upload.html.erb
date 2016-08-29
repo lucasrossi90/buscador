@@ -1,5 +1,5 @@
 <%= form_tag({action: :import_excel}, multipart: true) do %>
   <%= file_field_tag "file" %>
-  <%= select_tag :proveedor, options_from_collection_for_select(@listas, :id, :nombre) %>
+  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre) %>
   <%= submit_tag "Subir" %>
 <% end %>
