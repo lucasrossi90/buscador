@@ -11,7 +11,9 @@
  * file per style scope.
  *
  *= require bootstrap_and_overrides
- *= require_tree .
+ *= require articulos_controller
+ *= require custom
+ *= require cargador
  *= require_self
  */
  

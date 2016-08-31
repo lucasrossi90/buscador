@@ -7,7 +7,7 @@
 	<%= form_tag(articulos_path, :method => "get", id: "search-form") do %>
     <div class="row">
       <div class="col-sm-4">
-        <%= text_field_tag :search, params[:search] %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Ingrese CÓDIGO o DESCRIPCIÓN', size:60 %>
       </div>  
       <div class="col-sm-4">
 	     <%= select_tag :proveedor, options_from_collection_for_select(@proveedores, :id, :nombre), include_blank: 'Seleccionar...', class: 'form-control' %>

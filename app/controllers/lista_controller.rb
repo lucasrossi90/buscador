@@ -1,7 +1,7 @@
 class ListaController < ApplicationController
 
 	def index
-    @listas = Lista.all
+      @listas = Listum.all
 	end
 
 end

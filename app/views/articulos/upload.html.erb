@@ -1,4 +1,4 @@
-<%= form_tag({action: :import_excel}, multipart: true) do %>
+<%= form_tag({action: :import_excel}, multipart: true, id: 'upform') do %>
   <%= file_field_tag "file" %>
   <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre) %>
   <%= submit_tag "Subir" %>
