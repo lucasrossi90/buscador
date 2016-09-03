@@ -24,6 +24,7 @@ class ArticulosController < ApplicationController
 		@lista = Listum.find(nro_lista)
     @lista.fecha_precio = Date.today
     @lista.save
+      if @lista.nombre = "DISTRIBUIDORA OK"
     ActiveRecord::Base.transaction do
       if @lista.articulos.any?
         @lista.articulos.destroy_all
@@ -35,14 +36,18 @@ class ArticulosController < ApplicationController
   		sheet.each do |row|
         @lista.articulos.create(
                 			codigo:row[@lista.cod], 
-  							desc:row[@lista.desc], 
-  							precio:row[@lista.precio], 
-  							rubro: @lista.rubro, 
-  							listum_id: nro_lista)
+  							      desc:row[@lista.desc], 
+  							      precio:row[@lista.precio], 
+  							      rubro: @lista.rubro,
+                      descuento: @lista.proveedor.desc 
+  							      listum_id: nro_lista)
       end
   	end
-    render text: 'Listo'
-  end
+        render(
+        html: "<script>alert('Lista subida')</script>".html_safe,
+        layout: 'application'
+      )
+   end
 
   def upload
   	@listas = Listum.all

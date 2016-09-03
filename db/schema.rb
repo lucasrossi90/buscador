@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830175838) do
+ActiveRecord::Schema.define(version: 20160902155950) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160830175838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "listum_id"
+    t.integer  "descuento"
   end
 
   create_table "lista", force: :cascade do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160830175838) do
     t.string   "rubro"
     t.integer  "hoja"
     t.datetime "fecha_precio"
+    t.integer  "descuento"
   end
 
   create_table "proveedors", force: :cascade do |t|

@@ -9,10 +9,13 @@
 		<%= articulo.precio %>
 	</td>
 	<td>
-		<%= articulo.listum.proveedor.nombre %>
+		<%= articulo.precio - ((articulo.precio * articulo.descuento)/100) %>
 	</td>
 	<td>
-		<%= articulo.listum_id %>
+		<%= articulo.listum.nombre %>
+	</td>
+	<td>
+		<%= articulo.descuento %>
 	</td>
 	<td>
 		<%= articulo.rubro %>

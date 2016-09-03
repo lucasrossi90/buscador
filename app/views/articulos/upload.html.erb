@@ -1,5 +1,56 @@
-<%= form_tag({action: :import_excel}, multipart: true, id: 'upform') do %>
-  <%= file_field_tag "file" %>
-  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre) %>
-  <%= submit_tag "Subir" %>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<%= form_tag({action: :import_excel}, multipart: true, id: 'upform') do %>
+	<div class="cargador">
+	  <%= file_field_tag "file" %>		  	 
+	  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre) %>			  
+	  <%= submit_tag "Subir" %>		
+	</div>
+	<% end %>
+
+
+  <table class="table table-striped">
+   <tr>
+  	<th>
+  	Listas existentes
+  	</th>
+   </tr>	
+    <tr>
+      <th>Nombre</th>
+      <th>Proveedor</th>
+      <th>Fecha</th>
+      <th>Descuento</th>
+    </tr>
+  </table>   
+
+  
+  <%= @listas = Listum.all %>
+  <%= @listas.each do |lista| %>
+  <table class="table table-striped">
+	  <tr>
+		<td>
+		  <%= lista.nombre %>
+		</td>
+		<td>
+		  <%= lista.proveedor.nombre %>
+		</td>
+		<td>
+		  <%= lista.fecha_precio %>
+		</td>
+		<td>
+		  <%= lista.desc %>
+		</td>
+	  </tr>
+    </table>   
+
+  <%end%>
+  
+
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+#navbar {
+  background-color: grey;
+  color: red;
+}
+
+#titulo {
+  color:black;
+  font-size: 200%;
+  font-weight: bold;
+  font-family: Serif;
+}
+
+#articulos, #subir, #admin {
+  color: red;
+  font-size: 125%;
+  font-family: Serif;
+}
+
+.ul.nav.navbar-nav {
+  
+  font-size: 125%;
+  font-family: Serif;
+}
+
+.cargador {
+	content-align: center;
+}
