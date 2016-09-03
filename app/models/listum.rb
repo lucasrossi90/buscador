@@ -3,4 +3,8 @@ class Listum < ActiveRecord::Base
   	has_many :articulos
 
   validates :proveedor, presence: true
+
+    def to_s
+    nombre
+  	end
 end

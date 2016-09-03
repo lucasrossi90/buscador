@@ -24,7 +24,6 @@ class ArticulosController < ApplicationController
 		@lista = Listum.find(nro_lista)
     @lista.fecha_precio = Date.today
     @lista.save
-      if @lista.nombre = "DISTRIBUIDORA OK"
     ActiveRecord::Base.transaction do
       if @lista.articulos.any?
         @lista.articulos.destroy_all
@@ -33,23 +32,37 @@ class ArticulosController < ApplicationController
   		contenido = subido.read
   		book = Spreadsheet.open(StringIO.new(contenido))
   		sheet = book.worksheet(@lista.hoja)
-  		sheet.each do |row|
-        @lista.articulos.create(
-                			codigo:row[@lista.cod], 
-  							      desc:row[@lista.desc], 
-  							      precio:row[@lista.precio], 
-  							      rubro: @lista.rubro,
-                      descuento: @lista.proveedor.desc 
-  							      listum_id: nro_lista)
-      end
-  	end
+        if @lista.nombre = "DISTRIBUIDORA OK"
+            sheet.each do |row|
+            @lista.articulos.create(
+                      codigo:row[@lista.cod], 
+                      desc:row[@lista.desc], 
+                      precio:row[@lista.precio], 
+                      rubro: @lista.rubro,
+                      descuento: row[@lista.descuento],
+                      listum_id: nro_lista)
+            end   
+        else    
+    		  sheet.each do |row|
+          @lista.articulos.create(
+                  			codigo:row[@lista.cod], 
+    							      desc:row[@lista.desc], 
+    							      precio:row[@lista.precio], 
+    							      rubro: @lista.rubro,
+                        descuento: @lista.proveedor.desc, 
+    							      listum_id: nro_lista)
+          end
+        end
         render(
         html: "<script>alert('Lista subida')</script>".html_safe,
         layout: 'application'
-      )
-   end
+        )
+    end
+  end
 
   def upload
   	@listas = Listum.all
-    end
+  end
+
 end
+
