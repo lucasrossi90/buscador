@@ -13,42 +13,36 @@
 	</div>
 	<% end %>
 
-
-  <table class="table table-striped">
-   <tr>
-  	<th>
+  <h3>
   	Listas existentes
-  	</th>
-   </tr>	
+  </h3>
+  <table class="table table-striped">
     <tr>
       <th>Nombre</th>
       <th>Proveedor</th>
       <th>Fecha</th>
       <th>Descuento</th>
     </tr>
-  </table>   
 
   
-  <%= @listas = Listum.all %>
   <%= @listas.each do |lista| %>
-  <table class="table table-striped">
-	  <tr>
-		<td>
-		  <%= lista.nombre %>
-		</td>
-		<td>
-		  <%= lista.proveedor.nombre %>
-		</td>
-		<td>
-		  <%= lista.fecha_precio %>
-		</td>
-		<td>
-		  <%= lista.desc %>
-		</td>
-	  </tr>
-    </table>   
+    <tr>
+      <td>
+        <%= lista.nombre %>
+      </td>
+      <td>
+        <%= lista.proveedor.nombre %>
+      </td>
+      <td>
+        <%= lista.fecha_precio %>
+      </td>
+      <td>
+        <%= lista.desc %>
+      </td>
+    </tr>
 
   <%end%>
+  </table>   
   
 
 </body>

@@ -6,13 +6,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <nav class="navbar navbar-inverse" id="navbar">
+  <nav class="navbar navbar-inverse minavbar" id="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" id="titulo">Buscador</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="<%= 'active' if current_page?(articulos_path) %>"><%= link_to "Articulos", articulos_path %></li>
+      <li class="<%= 'active' if current_page?(articulos_path) %>">
+        <%= link_to "Articulos", articulos_path %>
+      </li>
       <li class="<%= 'active' if current_page?(upload_path) %>"><%= link_to "Subir lista", upload_path %></li> 
     </ul>
     <ul class="nav navbar-nav navbar-right">

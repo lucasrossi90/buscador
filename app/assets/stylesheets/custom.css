@@ -25,3 +25,10 @@
 .cargador {
 	content-align: center;
 }
+
+.navbar-inverse.minavbar .navbar-nav > li > a {
+    color: blue;
+}
+.navbar-inverse.minavbar .navbar-nav > li.active > a {
+    color: red;
+}
