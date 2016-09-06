@@ -1,6 +1,5 @@
-#navbar {
-  background-color: grey;
-  color: red;
+/*.navbar {
+  background-color: lightgrey;
 }
 
 #titulo {
@@ -10,25 +9,33 @@
   font-family: Serif;
 }
 
-#articulos, #subir, #admin {
-  color: red;
-  font-size: 125%;
-  font-family: Serif;
+/*.navbar.minavbar .navbar-nav > li > a {
+    color: black;
+    font-family: Serif;
+    font-weight: bold;
+    font-size: 150%;
+
+}
+.navbar.minavbar .navbar-nav > li.active > a {
+    color: darkred;
+    background-color: grey;
 }
 
-.ul.nav.navbar-nav {
-  
-  font-size: 125%;
-  font-family: Serif;
+*/
+
+
+.nav.navbar-nav .active a{background: red;}
+
+
+/*.navbar-nav > li > a:active {background: red!important;}*/
+a {color: black;
+
 }
 
-.cargador {
-	content-align: center;
-}
 
-.navbar-inverse.minavbar .navbar-nav > li > a {
-    color: blue;
-}
-.navbar-inverse.minavbar .navbar-nav > li.active > a {
-    color: red;
+
+
+/*.navbar a.active, a.hover {
+    outline: 0;
+    background: blueviolet;
 }
