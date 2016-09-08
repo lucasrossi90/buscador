@@ -4,18 +4,23 @@
 	<title></title>
 </head>
 <body>
-
+  <h4>
+    Subir una lista
+  </h4>
 	<%= form_tag({action: :import_excel}, multipart: true, id: 'upform') do %>
 	<div class="cargador">
-	  <%= file_field_tag "file" %>		  	 
-	  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre) %>			  
-	  <%= submit_tag "Subir" %>		
+		
+	  <%= file_field_tag "file", class: "ui pink-button" %>	
+	  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre), 
+        class: "form-control", 
+        style: "width:200px" %>			  
+	  <%= submit_tag "Subir", class: "btn btn-warning" %>		
 	</div>
 	<% end %>
 
-  <h3>
+  <h4>
   	Listas existentes
-  </h3>
+  </h4>
   <table class="table table-striped">
     <tr>
       <th>Nombre</th>
@@ -25,7 +30,7 @@
     </tr>
 
   
-  <%= @listas.each do |lista| %>
+  <% @listas.each do |lista| %>
     <tr>
       <td>
         <%= lista.nombre %>

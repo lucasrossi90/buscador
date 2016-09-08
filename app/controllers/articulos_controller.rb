@@ -20,8 +20,8 @@ class ArticulosController < ApplicationController
   end
 
   def import_excel
-		nro_lista = params[:lista]
-		@lista = Listum.find(nro_lista)
+	nro_lista = params[:lista]
+	@lista = Listum.find(nro_lista)
     @lista.fecha_precio = Date.today
     @lista.save
     ActiveRecord::Base.transaction do
