@@ -32,7 +32,8 @@ class ArticulosController < ApplicationController
   		contenido = subido.read
   		book = Spreadsheet.open(StringIO.new(contenido))
   		sheet = book.worksheet(@lista.hoja)
-        if @lista.nombre = "DISTRIBUIDORA OK"
+        if @lista.nombre == 'DISTRIBUIDORA OK'
+            then
             sheet.each do |row|
             @lista.articulos.create(
                       codigo:row[@lista.cod], 
@@ -42,7 +43,7 @@ class ArticulosController < ApplicationController
                       descuento: row[@lista.descuento],
                       listum_id: nro_lista)
             end   
-        else    
+        else
     		  sheet.each do |row|
           @lista.articulos.create(
                   			codigo:row[@lista.cod], 
