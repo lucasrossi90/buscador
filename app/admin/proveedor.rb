@@ -13,7 +13,7 @@ ActiveAdmin.register Proveedor do
 #   permitted
 # end
 
-permit_params :nombre, :desc
+permit_params :nombre, :descuento
 
 end
 

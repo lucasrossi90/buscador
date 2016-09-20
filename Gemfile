@@ -27,6 +27,11 @@ gem "twitter-bootstrap-rails"
 #excel
 gem 'ruby-ole'
 gem 'spreadsheet'
+gem 'roo', '~> 2.4.0'
+gem 'roo-xls'
+
+gem 'puma'
+
 
 #admin
 gem 'activeadmin', github: 'activeadmin'

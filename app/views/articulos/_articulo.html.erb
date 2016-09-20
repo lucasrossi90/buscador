@@ -6,13 +6,13 @@
 		<%= articulo.descripcion %>
 	</td>
 	<td>
-		<%= articulo.precio %>
+		<%= (articulo.precio).round(2) %>
 	</td>
 	<td>
-		<%= articulo.precio - ((articulo.precio * articulo.descuento)/100) %>
+		<%= (articulo.precio - ((articulo.precio * articulo.descuento)/100)).round(2) %>
 	</td>
 	<td>
-		<%= ((articulo.precio - ((articulo.precio * articulo.descuento)/100)) * 1.21) %>
+		<%= ((articulo.precio - ((articulo.precio * articulo.descuento)/100)) * 1.21).round(2) %>
 	</td>
 	<td>
 		<%= articulo.listum.nombre %>

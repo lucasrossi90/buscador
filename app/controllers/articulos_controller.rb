@@ -10,6 +10,16 @@ class ArticulosController < ApplicationController
 		@proveedores = Proveedor.all
 	end
 
+  def upload
+    @listas = Listum.all
+  end
+
+  def destruir_existentes(lista)
+     if @lista.articulos.any?
+        @lista.articulos.destroy_all
+     end
+  end 
+
   def resultado_articulos
     if params[:search]
       @articulos = Articulo.search(params[:search], params[:proveedor])
@@ -26,47 +36,52 @@ class ArticulosController < ApplicationController
     @lista.save
     ActiveRecord::Base.transaction do
       
-      destruir_existentes (@lista)
+      destruir_existentes(@lista)
 
-      subido = params[:file]
-      contenido = subido.read
-      book = Spreadsheet.open(StringIO.new(contenido))
-      sheet = book.worksheet(@lista.hoja)
+      book = Roo::Spreadsheet.open(params[:file].path)
+
 
   		if @lista.nombre == 'DISTRIBUIDORA OK'
            
-        insertar_oka (@lista, sheet)
+        insertar_oka(@lista, book, nro_lista)
            
-      else
+      else        
         
-        insertar_demas (@lista, sheet)
+        insertar_demas(@lista, book, nro_lista)
 
       end
+    end
+
         render(
         html: "<script>alert('Lista subida')</script>".html_safe,
         layout: 'application'
         )
-        redirect_to upload_path
-    end
-  
-
-  def upload
-  	@listas = Listum.all
   end
 
-  def destruir_existentes (lista)
-     if @lista.articulos.any?
-        @lista.articulos.destroy_all
-      end
-  end 
-
-
-  def insertar_oka (lista, sheet)
-    sheet = book.worksheet(@lista.hoja)     
-    sheet.each do |row|
+  def insertar_demas(lista, book, nro_lista)
+    book.sheet(@lista.hoja).each do |row|
+    codigo = row[@lista.codigo]
+    precio = row[@lista.precio]
+    next unless codigo.present?
+    next unless precio.present?
     @lista.articulos.create(
-              codigo:row[@lista.cod], 
-              desc:row[@lista.desc], 
+                codigo: row[@lista.codigo], 
+                descripcion: row[@lista.descripcion], 
+                precio: row[@lista.precio], 
+                rubro: @lista.rubro,
+                descuento: @lista.proveedor.descuento, 
+                listum_id: nro_lista)
+    end
+  end
+  
+
+  def insertar_oka(lista, book, nro_lista)
+    book.sheet(@lista.hoja).each do |row|
+    codigo = row[@lista.codigo]
+    next unless codigo.present?
+    @lista.articulos.create(
+              codigo:row[@lista.codigo], 
+              descripcion:row[@lista.descripcion], 
               precio:row[@lista.precio], 
               rubro: @lista.rubro,
               descuento: row[@lista.descuento],
@@ -74,19 +89,6 @@ class ArticulosController < ApplicationController
     end
   end
 
-  def insertar_demas (lista, sheet)    
-    sheet.each do |row|
-    @lista.articulos.create(
-                  codigo:row[@lista.cod], 
-                  desc:row[@lista.desc], 
-                  precio:row[@lista.precio], 
-                  rubro: @lista.rubro,
-                  descuento: @lista.proveedor.desc, 
-                  listum_id: nro_lista)
-    end
-  end
-
-  
 end     
 
 
