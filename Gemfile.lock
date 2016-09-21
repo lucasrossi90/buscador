@@ -278,7 +278,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  mini_portile2
   pg (~> 0.18.4)
+  pkg-config
   puma
   pundit
   rails (= 4.2.5.2)
