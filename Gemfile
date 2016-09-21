@@ -61,6 +61,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'pkg-config'
+gem 'mini_portile2'
+
 gem 'faker'
 gem 'factory_girl'
 
