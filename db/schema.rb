@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910142647) do
+ActiveRecord::Schema.define(version: 20160929200224) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -25,19 +25,21 @@ ActiveRecord::Schema.define(version: 20160910142647) do
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_commenttensors", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "articulos", force: :cascade do |t|
     t.string   "codigo"
-    t.text     "descripcion"
     t.decimal  "precio"
     t.string   "rubro"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "listum_id"
     t.integer  "descuento"
+    t.string   "descripcion"
   end
+
+  add_index "articulos", ["codigo", "descripcion", "listum_id"], name: "index_articulos_on_codigo_and_descripcion_and_listum_id"
 
   create_table "lista", force: :cascade do |t|
     t.datetime "created_at",   null: false
