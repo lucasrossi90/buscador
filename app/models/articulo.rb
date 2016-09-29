@@ -6,7 +6,7 @@ class Articulo < ActiveRecord::Base
     if proveedor.present?
       query = query.where(proveedor: proveedor)
     end
-    query
+    query.includes(:listum)
 	end
 
 end
