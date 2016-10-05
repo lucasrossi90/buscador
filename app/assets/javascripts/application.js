@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require twitter/typeahead
+//= require articulos
 //= require_tree .

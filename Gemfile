@@ -32,7 +32,11 @@ gem 'spreadsheet'
 gem 'roo', '~> 2.4.0'
 gem 'roo-xls'
 
+#webserver
 gem 'puma'
+
+#typeahead
+gem 'twitter-typeahead-rails'
 
 
 #admin

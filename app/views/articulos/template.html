@@ -1,0 +1,31 @@
+<script id="articulos-script" type="text/x-handlebars-template">
+<tr>
+	<td>
+		{{ articulo.codigo }}
+	</td>
+	<td>
+		{{ articulo.descripcion }}
+	</td>
+	<td>
+		{{ (articulo.precio).round(2) }}
+	</td>
+	<td>
+		{{ (articulo.precio - ((articulo.precio * articulo.descuento)/100)).round(2) }}
+	</td>
+	<td>
+		{{ ((articulo.precio - ((articulo.precio * articulo.descuento)/100)) * 1.21).round(2) }}
+	</td>
+	<td>
+		{{ articulo.listum.nombre }}
+	</td>
+	<td>
+		{{ articulo.descuento }}
+	</td>
+	<td>
+		{{ articulo.rubro }}
+	</td>
+	<td>
+		{{ articulo.listum.fecha_precio.strftime('%Y/%m') }}
+	</td>
+</tr>
+</script>
