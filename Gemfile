@@ -37,6 +37,7 @@ gem 'puma'
 
 #typeahead
 gem 'twitter-typeahead-rails'
+gem 'rails-assets-handlebars', source: 'https://rails-assets.org'
 
 
 #admin
@@ -45,6 +46,9 @@ gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
+
+gem 'active_model_serializers', '~> 0.10.0'
+
 
 #upload
 gem 'carrierwave'
@@ -72,6 +76,8 @@ gem 'mini_portile2'
 
 gem 'faker'
 gem 'factory_girl'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

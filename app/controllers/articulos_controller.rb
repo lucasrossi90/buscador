@@ -26,7 +26,7 @@ class ArticulosController < ApplicationController
     else
       @articulos = Articulo.all
     end
-    render layout: false
+    render json: @articulos
   end
 
   def import_excel

@@ -15,5 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require twitter/typeahead
+//= require handlebars
 //= require articulos
 //= require_tree .

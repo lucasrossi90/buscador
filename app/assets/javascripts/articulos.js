@@ -1,32 +1,46 @@
 $('document').ready(function(){
 
-    // instantiate the bloodhound suggestion engine
-    var articulos = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('codigo', 'descripcion'),
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-          remote: {
-            url: '../articulos/resultado_articulos/%QUERY.json',
-            wildcard: '%QUERY'
+    function buildTypeahead(url) {
+      // instantiate the bloodhound suggestion engine
+      var articulos = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('codigo', 'descripcion'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+            remote: {
+              url: url,
+              wildcard: '%QUERY'
+          }
+      });
+      // initialize the bloodhound suggestion engine
+      articulos.initialize();
+      var source = $("#articulos-script").html();
+      var template = Handlebars.compile(source);
+
+      // instantiate the typeahead UI
+      $('#search').typeahead(null, {
+        displayKey: 'articulos',
+        source: articulos.ttAdapter(),
+        classNames: {
+            dataset: 'table',
+          },
+        templates: {
+             empty: [
+            '<tr>',
+              '<td colspan="9">No se pudo encontrar lo buscado</td>',
+            '</tr>'
+          ].join('\n'),        
+              suggestion: template
         }
+      });
+    }
+    buildTypeahead('/articulos/resultado_articulos?search=%QUERY');
+
+    $('#proveedor').change(function() {
+      buildTypeahead('/articulos/resultado_articulos?proveedor='+ $(this).val() +'&search=%QUERY');
     });
 
-    // initialize the bloodhound suggestion engine
-    articulos.initialize();
-    var source = $("#articulos-script").html();
-    var template = Handlebars.compile(source);
 
-    // instantiate the typeahead UI
-    $('#search').typeahead(null, {
-      displayKey: 'articulos',
-      source: articulos.ttAdapter(),
-      templates: {
-           empty: [
-          '<div class="empty-message">',
-            'No se pudo encontrar lo buscado',
-          '</div>'
-        ].join('\n'),        
-            suggestion: Handlebars.compile(template)         
-      }
+    $('#search').bind('typeahead:render', function() {
+      $('#resultado').html($('.tt-dataset').html());
     });
 
     // function actualizarResultados() {

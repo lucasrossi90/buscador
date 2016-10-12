@@ -4,7 +4,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: buscador
-  password: 
+  password: buscador
 
 development:
   <<: *default
