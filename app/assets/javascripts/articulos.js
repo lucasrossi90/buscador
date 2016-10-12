@@ -32,10 +32,13 @@ $('document').ready(function(){
         }
       });
     }
+    
     buildTypeahead('/articulos/resultado_articulos?search=%QUERY');
 
     $('#proveedor').change(function() {
+      $('#search').typeahead('destroy');
       buildTypeahead('/articulos/resultado_articulos?proveedor='+ $(this).val() +'&search=%QUERY');
+      $('#search').focus();
     });
 
 
