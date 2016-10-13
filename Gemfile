@@ -47,6 +47,7 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 
+#serializer
 gem 'active_model_serializers', '~> 0.10.0'
 
 

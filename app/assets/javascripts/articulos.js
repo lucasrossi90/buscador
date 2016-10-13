@@ -7,7 +7,8 @@ $('document').ready(function(){
         queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
               url: url,
-              wildcard: '%QUERY'
+              wildcard: '%QUERY',
+              limit: 100
           }
       });
       // initialize the bloodhound suggestion engine
@@ -18,6 +19,7 @@ $('document').ready(function(){
       // instantiate the typeahead UI
       $('#search').typeahead(null, {
         displayKey: 'articulos',
+        limit: 100,
         source: articulos.ttAdapter(),
         classNames: {
             dataset: 'table',
