@@ -49,7 +49,7 @@ gem 'pundit'
 
 #serializer
 gem 'active_model_serializers', '~> 0.10.0'
-
+gem 'jsonapi-parser', '>= 0.1.1.beta3'
 
 #upload
 gem 'carrierwave'

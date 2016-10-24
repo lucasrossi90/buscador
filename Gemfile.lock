@@ -149,10 +149,10 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
-    jsonapi (0.1.1.beta5)
-      jsonapi-parser (= 0.1.1.beta2)
+    jsonapi (0.1.1.beta6)
+      jsonapi-parser (= 0.1.1.beta3)
       jsonapi-renderer (= 0.1.1.beta1)
-    jsonapi-parser (0.1.1.beta2)
+    jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -316,6 +316,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  jsonapi-parser (>= 0.1.1.beta3)
   less-rails
   mini_portile2
   pg (~> 0.18.4)
