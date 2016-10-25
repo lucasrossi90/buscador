@@ -29,7 +29,7 @@
         <h5>Defina fecha de la lista</h5>
       </div>
       <div class="col-md-2" >
-          <input data-date-format="mm-dd-yyyy" name="fecha" data-provide='datepicker' class='form-control'>
+          <input data-date-format="dd-mm-yyyy" name="fecha" data-provide='datepicker' class='form-control'>
       </div>
       <div class="col-md-12">  
           <%= submit_tag "Subir", class: "btn btn-warning" %>
@@ -53,6 +53,7 @@
 
   
   <% @listas.each do |lista| %>
+  <% next unless lista.fecha_subida.present? %>
     <tr>
       <td>
         <%= lista.nombre %>

@@ -6,7 +6,7 @@ role :web, %w{ubuntu@buscador.programando.com.ar}
 role :db, %w{ubuntu@buscador.programando.com.ar}
 
 set :ssh_options, {
-  keys: %w(~/amazon.pem)
+  keys: %w(./amazon.pem)
   # forward_agent: false,
   # auth_methods: %w(password)
 }

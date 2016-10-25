@@ -28,4 +28,8 @@ class ArticuloSerializer < ActiveModel::Serializer
 		object.listum.nombre
 	end
 
+	def precio
+		object.precio.round(2)
+	end
+
 end
