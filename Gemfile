@@ -39,6 +39,9 @@ gem 'puma'
 gem 'twitter-typeahead-rails'
 gem 'rails-assets-handlebars', source: 'https://rails-assets.org'
 
+#datepicker
+gem 'bootstrap-datepicker-rails'
+
 
 #admin
 gem 'activeadmin', github: 'activeadmin'

@@ -13,7 +13,7 @@ class ArticuloSerializer < ActiveModel::Serializer
 	belongs_to :listum
 
 	def fechaLista
-		(object.listum.fecha_precio).strftime('%Y/%m')
+		(object.listum.fecha_precio).strftime('%m/%Y')
 	end
 
 	def precioDescuento

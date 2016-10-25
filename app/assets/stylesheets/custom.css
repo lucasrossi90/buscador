@@ -18,10 +18,11 @@ a {color: black;
 
 }
 
-span {font-weight: bold;
-       font-size: 150%;
-       font-family: Serif;
-       color: black;}
+.span-upload {
+       color: black;
+       text-decoration: underline;
+}
+
 
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
@@ -33,4 +34,9 @@ span {font-weight: bold;
 h4 {
   text-decoration: underline;
 }
+
+h5 {
+  text-decoration: underline;
+}
+
 

@@ -11,7 +11,7 @@ class ArticulosController < ApplicationController
 	end
 
   def upload
-    @listas = Listum.all
+    @listas = Listum.all.includes(:proveedor)
   end
 
   def destruir_existentes(lista)
@@ -31,8 +31,11 @@ class ArticulosController < ApplicationController
 
   def import_excel
 	  nro_lista = params[:lista]
-	  @lista = Listum.find(nro_lista)
-    @lista.fecha_precio = Date.today
+    fecha_lista = params[:fecha]
+    fecha_parse = Date.parse(fecha_lista)
+ 	  @lista = Listum.find(nro_lista)
+    @lista.fecha_precio = fecha_parse
+    @lista.fecha_subida = DateTime.now
     @lista.save
     ActiveRecord::Base.transaction do
       

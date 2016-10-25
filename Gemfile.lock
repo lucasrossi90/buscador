@@ -73,6 +73,8 @@ GEM
       debug_inspector (>= 0.0.1)
     boostrap-sass (0.0.2)
       bootstrap-sass
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -304,6 +306,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   activeadmin!
   boostrap-sass
+  bootstrap-datepicker-rails
   bullet
   byebug
   cancan

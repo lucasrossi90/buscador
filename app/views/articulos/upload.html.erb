@@ -4,28 +4,50 @@
 	<title></title>
 </head>
 <body>
-  <h4>
-    Subir una lista
-  </h4>
+ <div class="col-md-12">  
+   <h4>
+      Subir una lista
+    </h4>
+    </div>
+ 
+
 	<%= form_tag({action: :import_excel}, multipart: true, id: 'upform') do %>
+
 	<div class="cargador">
-		
-	  <%= file_field_tag "file", class: "ui pink-button" %>	
-	  <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre), 
-        class: "form-control", 
-        style: "width:200px" %>			  
-	  <%= submit_tag "Subir", class: "btn btn-warning" %>		
-	</div>
+  		<div class="col-md-12">
+  	     <%= file_field_tag "file", class: "ui pink-button" %>	
+      </div>
+      <div class="col-md-12">
+          <h5>Elija la lista correspondiente</h5> 
+      </div>
+      <div class="col-md-12">  
+  	     <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre), 
+          class: "form-control", 
+          style: "width:200px" %>
+      </div>			  
+  	  <div class="col-md-12" >
+        <h5>Defina fecha de la lista</h5>
+      </div>
+      <div class="col-md-2" >
+          <input data-date-format="mm-dd-yyyy" name="fecha" data-provide='datepicker' class='form-control'>
+      </div>
+      <div class="col-md-12">  
+          <%= submit_tag "Subir", class: "btn btn-warning" %>
+      </div>
+  </div>
 	<% end %>
 
+ <div class="col-md-12">  
   <h4>
   	Listas existentes
   </h4>
+ </div>
   <table class="table table-striped">
     <tr>
       <th>Nombre</th>
       <th>Proveedor</th>
-      <th>Fecha</th>
+      <th>Fecha lista</th>
+      <th>Fecha subida</th>
       <th>Descuento</th>
     </tr>
 
@@ -39,7 +61,10 @@
         <%= lista.proveedor.nombre %>
       </td>
       <td>
-        <%= lista.fecha_precio %>
+        <%= lista.fecha_precio.strftime('%d/%m/%Y') %>
+      </td>
+       <td>
+        <%= lista.fecha_subida.strftime('%d/%m/%Y') %>
       </td>
       <td>
         <%= lista.proveedor.descuento %>
