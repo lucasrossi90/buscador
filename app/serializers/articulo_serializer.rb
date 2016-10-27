@@ -32,10 +32,12 @@ class ArticuloSerializer < ActiveModel::Serializer
 		object.precio.round(2)
 	end
 
-	# def codigo
-	# 	if object.listum.proveedor.nombre == 'DIVALCOR'
-	# 		codigo.gsub(/\.0\Z/, '')
-	# 	end	
-	# end
+	def codigo
+		if object.listum.proveedor.nombre == 'DIVALCOR'
+			object.codigo.gsub(/\.0\Z/, '')
+		else
+			object.codigo
+		end	
+	end
 
 end

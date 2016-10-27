@@ -44,7 +44,7 @@ gem 'bootstrap-datepicker-rails'
 
 
 #admin
-gem 'activeadmin'
+gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
