@@ -34,15 +34,43 @@ $('document').ready(function(){
         }
       });
     }
-    
-    buildTypeahead('/articulos/resultado_articulos?search=%QUERY');
 
-    $('#proveedor').change(function() {
+    pagina_actual = 0;
+    
+    buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
+      
+    $('#button_anterior').hide();
+      
+     $('#button_siguiente').click(function(){
       $('#search').typeahead('destroy');
-      buildTypeahead('/articulos/resultado_articulos?proveedor='+ $(this).val() +'&search=%QUERY');
+      pagina_actual = pagina_actual + 1;
+      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
+      $('#button_anterior').show();
       $('#search').focus();
     });
 
+      $('#button_anterior').click(function(){
+        $('#search').typeahead('destroy');
+        pagina_actual = pagina_actual - 1;
+        buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
+        $('#search').focus();
+        if (pagina_actual == 0){
+          $('#button_anterior').hide();
+        }
+      });
+
+    $('#orden').change(function() {
+      $('#search').typeahead('destroy');
+      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $(this).val() + '&search=%QUERY');
+      $('#search').focus();
+    });
+
+    $('#proveedor').change(function() {
+      $('#search').typeahead('destroy');
+      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&proveedor='+ $(this).val() +
+        '&search=%QUERY');
+      $('#search').focus();
+    });
 
     $('#search').bind('typeahead:render', function() {
       $('#resultado').html($('.tt-dataset').html());

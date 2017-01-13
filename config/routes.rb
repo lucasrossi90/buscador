@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   get 'upload', to: 'articulos#upload'
   get 'articulos/resultado_articulos/', to: 'articulos#resultado_articulos'
+   get 'articulos/articulos_lista', to: 'articulos#articulos_lista'
+  get 'articulos/mostrar_lista', to: 'articulos#mostrar_lista'
+ 
   post 'articulos/import_excel', to: 'articulos#import_excel'
 
   resources :articulos

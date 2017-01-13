@@ -1,0 +1,45 @@
+  <%= form_tag(articulos_path, :method => "get", id: "lista-form") do %>
+  <div class="container">
+      <div class="col-md-4">
+             <%= select_tag :lista, options_from_collection_for_select(@listas, :id, :nombre), include_blank: 'Seleccionar LISTA...', class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+          <%= select_tag :orden_lista, options_for_select([[ "Ordenado por CÓDIGO" , "codigo" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]], ["codigo"]), class: 'form-control' %>
+    </div>
+  </div>  
+  <%end%>
+
+  <%= render partial: 'articulostype' %>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Precio c/desc.</th>
+      <th>Precio +21%</th>
+      <th>Lista</th>
+      <th>Descuento</th>
+      <th>Rubro</th>
+      <th>Fecha precio</th>
+    </tr>
+    <tbody id="contenido_lista">
+    </tbody>
+  </table>
+
+<script>
+  function actualizarLista() {
+  $.get('/articulos/articulos_lista', { lista: $('#lista').val(), orden_lista: $('#orden_lista').val() })
+  .success(function(response){
+   $('#contenido_lista').html(response);
+   });
+  }
+
+   $('#orden_lista').change(function() {
+    actualizarLista();
+  });
+
+   $('#lista').change(function() {
+    actualizarLista();
+  });
+</script>

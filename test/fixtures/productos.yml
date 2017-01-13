@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  interno: 1
+  codigo: MyString
+  descripcion: MyString
+  articulos: 
+  descripcion_proveedor}: MyString
+
+two:
+  interno: 1
+  codigo: MyString
+  descripcion: MyString
+  articulos: 
+  descripcion_proveedor}: MyString

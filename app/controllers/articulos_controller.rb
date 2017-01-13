@@ -22,11 +22,11 @@ class ArticulosController < ApplicationController
 
   def resultado_articulos
     if params[:search]
-      @articulos = Articulo.search(params[:search], params[:proveedor])
+      @articulos = Articulo.search(params[:search], params[:proveedor], params[:orden], params[:page])     
     else
       @articulos = Articulo.all
     end
-    render json: @articulos
+      render json: @articulos
   end
 
   def import_excel
@@ -90,6 +90,17 @@ class ArticulosController < ApplicationController
               descuento: row[@lista.descuento],
               listum_id: nro_lista)
     end
+  end
+
+  def mostrar_lista
+      @listas = Listum.all
+  end
+
+  def articulos_lista
+    if params[:lista]
+     @articulos_lista = Articulo.where(listum_id: params[:lista]).order(params[:orden_lista])
+    end
+    render @articulos_lista
   end
 
 end     

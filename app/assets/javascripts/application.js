@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-
+//= require moment
+//= require bootstrap-sortable
 //= require twitter/typeahead
 //= require bootstrap-datepicker
 //= require handlebars

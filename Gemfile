@@ -26,11 +26,18 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 
+#paginación
+gem 'will_paginate', '~> 3.1.0'
+
 #excel
 gem 'ruby-ole'
 gem 'spreadsheet'
 gem 'roo', '~> 2.4.0'
 gem 'roo-xls'
+
+#sortable
+gem 'momentjs-rails'
+gem 'rails_bootstrap_sortable'
 
 #webserver
 gem 'puma'

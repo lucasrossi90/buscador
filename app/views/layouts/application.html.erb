@@ -6,8 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-<nav class="navbar" id="navbar">
-  <div class="container-fluid">
+<div class="container">
+  <nav class="navbar" id="navbar">
     <div class="navbar-header">
       <span class="navbar-brand waves-effect waves-light" href="#">BUSCADOR</span>    
     </div>
@@ -16,15 +16,23 @@
         <li class="<%= 'active' if current_page?(articulos_path) %>">
           <%= link_to "Articulos", articulos_path %>
         </li>
-        <li class="<%= 'active' if current_page?(upload_path) %>">
-          <%= link_to "Subir lista", upload_path %>
-        </li> 
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="admin" id="admin"></span>Administrar</a></li>
       </ul>
+    <div class="btn-group">
+        <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Listas <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Subir lista", upload_path %></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to "Ver una lista", 'articulos/mostrar_lista' %></li>
+        </ul>
     </div>
-</nav>
+    </div>
+  </nav>
+</div>
 
 
 </head>
