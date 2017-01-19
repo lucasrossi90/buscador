@@ -26,9 +26,6 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 
-#paginación
-gem 'will_paginate', '~> 3.1.0'
-
 #excel
 gem 'ruby-ole'
 gem 'spreadsheet'

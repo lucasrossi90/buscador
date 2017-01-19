@@ -1,6 +1,6 @@
 $('document').ready(function(){
 
-    function buildTypeahead(url) {
+  function buildTypeahead(url) {
       // instantiate the bloodhound suggestion engine
       var articulos = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('codigo', 'descripcion'),
@@ -33,12 +33,13 @@ $('document').ready(function(){
               suggestion: template
         }
       });
+      
     }
 
     pagina_actual = 0;
     
     buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
-      
+          
     $('#button_anterior').hide();
       
      $('#button_siguiente').click(function(){

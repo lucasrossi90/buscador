@@ -1,6 +1,5 @@
 class Producto < ActiveRecord::Base
 	has_many :articulos
-	serialize :articulos, Hash
 
 	def parse_productos
 		product_array = []

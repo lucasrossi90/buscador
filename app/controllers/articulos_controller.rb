@@ -11,7 +11,7 @@ class ArticulosController < ApplicationController
 	end
 
   def upload
-    @listas = Listum.all.includes(:proveedor)
+    @listas = Listum.all.includes(:proveedor).order('nombre')
   end
 
   def destruir_existentes(lista)
@@ -44,13 +44,25 @@ class ArticulosController < ApplicationController
       book = Roo::Spreadsheet.open(params[:file].path)
 
 
-  		if @lista.nombre == 'DISTRIBUIDORA OK'
+  		if @lista.proveedor.nombre == 'DISTRIBUIDORA OK'
            
-        insertar_oka(@lista, book, nro_lista)
+        crear_articulos_descuento(@lista, book, nro_lista)
            
-      else        
+      elsif @lista.nombre == 'CACY - DIESEL'        
         
-        insertar_demas(@lista, book, nro_lista)
+        crear_articulos(@lista, book, nro_lista,  0)
+        crear_articulos(@lista, book, nro_lista,  4)
+
+      elsif @lista.nombre == 'FPM'
+
+        crear_articulos(@lista, book, nro_lista, 0)
+        crear_articulos(@lista, book, nro_lista, 3)
+        crear_articulos(@lista, book, nro_lista, 6)
+        crear_articulos(@lista, book, nro_lista, 9)
+
+      else
+
+        crear_articulos(@lista, book, nro_lista, 0)
 
       end
     end
@@ -61,24 +73,7 @@ class ArticulosController < ApplicationController
         )
   end
 
-  def insertar_demas(lista, book, nro_lista)
-    book.sheet(@lista.hoja).each do |row|
-    codigo = row[@lista.codigo]
-    precio = row[@lista.precio]
-    next unless codigo.present?
-    next unless precio.present?
-    @lista.articulos.create(
-                codigo: row[@lista.codigo], 
-                descripcion: row[@lista.descripcion], 
-                precio: row[@lista.precio], 
-                rubro: @lista.rubro,
-                descuento: @lista.proveedor.descuento, 
-                listum_id: nro_lista)
-    end
-  end
-  
-
-  def insertar_oka(lista, book, nro_lista)
+  def crear_articulos_descuento(lista, book, nro_lista)
     book.sheet(@lista.hoja).each do |row|
     codigo = row[@lista.codigo]
     next unless codigo.present?
@@ -88,6 +83,22 @@ class ArticulosController < ApplicationController
               precio:row[@lista.precio], 
               rubro: @lista.rubro,
               descuento: row[@lista.descuento],
+              listum_id: nro_lista)
+    end
+  end
+
+  def crear_articulos(lista, book, nro_lista, offset)
+    book.sheet(@lista.hoja).each do |row|
+    codigo = row[@lista.codigo + offset]
+    precio = row[@lista.precio + offset]
+    next unless codigo.present?
+    next unless precio.present?
+    @lista.articulos.create(
+              codigo:row[@lista.codigo + offset], 
+              descripcion:row[@lista.descripcion + offset], 
+              precio:row[@lista.precio + offset], 
+              rubro: @lista.rubro,
+              descuento: @lista.proveedor.descuento,
               listum_id: nro_lista)
     end
   end
