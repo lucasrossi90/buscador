@@ -74,37 +74,47 @@ class ArticulosController < ApplicationController
   end
 
   def crear_articulos_descuento(lista, book, nro_lista)
-    book.sheet(@lista.hoja).each do |row|
-    codigo = row[@lista.codigo]
-    next unless codigo.present?
-    @lista.articulos.create(
-              codigo:row[@lista.codigo], 
-              descripcion:row[@lista.descripcion], 
-              precio:row[@lista.precio], 
-              rubro: @lista.rubro,
-              descuento: row[@lista.descuento],
-              listum_id: nro_lista)
-    end
+    pages = @lista.hoja["paginas"]
+      pages.each do |page|
+        book.sheet(page).each do |row|
+        codigo = row[@lista.codigo]
+        precio = row[@lista.precio]
+        descuento = row[@lista.descuento]
+        next unless codigo.present?
+        next unless precio.present?
+        next unless descuento.present?
+        @lista.articulos.create(
+                  codigo:row[@lista.codigo], 
+                  descripcion:row[@lista.descripcion], 
+                  precio:row[@lista.precio], 
+                  rubro: @lista.rubro,
+                  descuento: row[@lista.descuento],
+                  listum_id: nro_lista)
+        end
+      end
   end
 
   def crear_articulos(lista, book, nro_lista, offset)
-    book.sheet(@lista.hoja).each do |row|
-    codigo = row[@lista.codigo + offset]
-    precio = row[@lista.precio + offset]
-    next unless codigo.present?
-    next unless precio.present?
-    @lista.articulos.create(
-              codigo:row[@lista.codigo + offset], 
-              descripcion:row[@lista.descripcion + offset], 
-              precio:row[@lista.precio + offset], 
-              rubro: @lista.rubro,
-              descuento: @lista.proveedor.descuento,
-              listum_id: nro_lista)
-    end
+    pages = @lista.hoja["paginas"]
+      pages.each do |page|
+        book.sheet(page).each do |row|
+        codigo = row[@lista.codigo + offset]
+        precio = row[@lista.precio + offset]
+        next unless codigo.present?
+        next unless precio.present?
+        @lista.articulos.create(
+                  codigo:row[@lista.codigo + offset], 
+                  descripcion:row[@lista.descripcion + offset], 
+                  precio:row[@lista.precio + offset], 
+                  rubro: @lista.rubro,
+                  descuento: @lista.proveedor.descuento,
+                  listum_id: nro_lista)
+        end
+      end
   end
 
   def mostrar_lista
-      @listas = Listum.all
+      @listas = Listum.all.order('nombre')
   end
 
   def articulos_lista
