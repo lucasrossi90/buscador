@@ -82,7 +82,7 @@ class ArticulosController < ApplicationController
         descuento = row[@lista.descuento]
         next unless codigo.present?
         next unless precio.present?
-        next unless descuento.present?
+        next unless descuento.present?    
         @lista.articulos.create(
                   codigo:row[@lista.codigo], 
                   descripcion:row[@lista.descripcion], 
@@ -99,16 +99,29 @@ class ArticulosController < ApplicationController
       pages.each do |page|
         book.sheet(page).each do |row|
         codigo = row[@lista.codigo + offset]
+        descripcion = row[@lista.descripcion + offset]
         precio = row[@lista.precio + offset]
         next unless codigo.present?
-        next unless precio.present?
-        @lista.articulos.create(
-                  codigo:row[@lista.codigo + offset], 
-                  descripcion:row[@lista.descripcion + offset], 
-                  precio:row[@lista.precio + offset], 
-                  rubro: @lista.rubro,
-                  descuento: @lista.proveedor.descuento,
-                  listum_id: nro_lista)
+
+          if precio.blank?
+
+            @lista.articulos.create(
+                      codigo:row[@lista.codigo + offset], 
+                      descripcion:row[@lista.descripcion + offset], 
+                      precio: 0, 
+                      rubro: @lista.rubro,
+                      descuento: @lista.proveedor.descuento,
+                      listum_id: nro_lista)
+          else
+
+            @lista.articulos.create(
+                    codigo:row[@lista.codigo + offset], 
+                    descripcion:row[@lista.descripcion + offset], 
+                    precio:row[@lista.precio + offset], 
+                    rubro: @lista.rubro,
+                    descuento: @lista.proveedor.descuento,
+                    listum_id: nro_lista)
+          end
         end
       end
   end

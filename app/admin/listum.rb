@@ -17,7 +17,7 @@ ActiveAdmin.register Listum do
 
   form do |f|
     f.inputs do
-      f.input :proveedor_id, :as => :select, :collection => Proveedor.all.collect {|proveedor| [proveedor.nombre] }
+      f.input :proveedor_id, :as => :select, :collection => Proveedor.all.collect {|proveedor| [proveedor.nombre, proveedor.id] }
       f.input :nombre
 	    f.input :codigo
       f.input :descripcion
