@@ -47,6 +47,14 @@ class ArticulosController < ApplicationController
   		if @lista.proveedor.nombre == 'DISTRIBUIDORA OK'
            
         crear_articulos_descuento(@lista, book, nro_lista)
+
+      elsif @lista.proveedor.nombre == 'HERTRAC'
+
+        crear_articulos_punto(@lista, book, nro_lista)
+
+      elsif @lista.proveedor.nombre == 'DE-FA'
+
+        crear_articulos_coma(@lista, book, nro_lista)
            
       elsif @lista.nombre == 'CACY - DIESEL'        
         
@@ -90,6 +98,68 @@ class ArticulosController < ApplicationController
                   rubro: @lista.rubro,
                   descuento: row[@lista.descuento],
                   listum_id: nro_lista)
+        end
+      end
+  end
+
+    def crear_articulos_punto(lista, book, nro_lista)
+    pages = @lista.hoja["paginas"]
+      pages.each do |page|
+        book.sheet(page).each do |row|
+        codigo = row[@lista.codigo]
+        precio = row[@lista.precio]
+        next unless codigo.present?
+       
+          if precio.blank?
+
+            @lista.articulos.create(
+                      codigo:row[@lista.codigo].gsub(/\s/,''), 
+                      descripcion:row[@lista.descripcion], 
+                      precio: 0, 
+                      rubro: @lista.rubro,
+                      descuento: @lista.proveedor.descuento,
+                      listum_id: nro_lista)
+          else
+
+            @lista.articulos.create(
+                    codigo:row[@lista.codigo].gsub(/\s/,''), 
+                    descripcion:row[@lista.descripcion], 
+                    precio: row[@lista.precio].gsub(/\./,''), 
+                    rubro: @lista.rubro,
+                    descuento: @lista.proveedor.descuento,
+                    listum_id: nro_lista)
+          end
+        end
+      end
+  end
+
+  def crear_articulos_coma(lista, book, nro_lista)
+    pages = @lista.hoja["paginas"]
+      pages.each do |page|
+        book.sheet(page).each do |row|
+        codigo = row[@lista.codigo]
+        precio = row[@lista.precio]
+        next unless codigo.present?
+       
+          if precio.blank?
+
+            @lista.articulos.create(
+                      codigo:row[@lista.codigo], 
+                      descripcion:row[@lista.descripcion], 
+                      precio: 0, 
+                      rubro: @lista.rubro,
+                      descuento: @lista.proveedor.descuento,
+                      listum_id: nro_lista)
+          else
+
+            @lista.articulos.create(
+                    codigo:row[@lista.codigo], 
+                    descripcion:row[@lista.descripcion], 
+                    precio: row[@lista.precio].gsub(/\,/, '').tr('.',','), 
+                    rubro: @lista.rubro,
+                    descuento: @lista.proveedor.descuento,
+                    listum_id: nro_lista)
+          end
         end
       end
   end

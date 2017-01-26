@@ -33,8 +33,10 @@ class ArticuloSerializer < ActiveModel::Serializer
 	end
 
 	def codigo
-		if object.listum.proveedor.nombre == 'DIVALCOR' || 'BOETTOtl'
+		if object.listum.proveedor.nombre == 'DIVALCOR' || 'BOETTO'
 			object.codigo.gsub(/\.0\Z/, '')
+		elsif object.listum.proveedor.id == 'HERTRAC'
+			object.codigo.gsub(/\s/,'')
 		else
 			object.codigo
 		end	
