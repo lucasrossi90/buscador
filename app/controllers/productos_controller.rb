@@ -1,7 +1,7 @@
 class ProductosController < ApplicationController
 
 	def index
-		@productos = Producto.all
+		@rubros = Rubro.all
 	end
 	
 	def resultado_productos
@@ -12,6 +12,6 @@ class ProductosController < ApplicationController
 	    else
 	      	@productos = Producto.all
 	    end
-	      render json: @articulos
+	      render json: @productos
   	end
 end
