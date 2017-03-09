@@ -1,8 +1,9 @@
 class ArticuloSerializer < ActiveModel::Serializer
   attributes :id, 
 			  :codigo, 
-			  :descripcion, 
+			  :descripcion,
 			  :precio, 
+			  :precioMasGanancia,
 			  :precioDescuento, 
 			  :precioIva, 
 			  :nombreLista, 
@@ -14,6 +15,10 @@ class ArticuloSerializer < ActiveModel::Serializer
 
 	def fechaLista
 		(object.listum.fecha_precio).strftime('%m/%Y')
+	end
+
+	def precioMasGanancia
+		(object.precio* 1.85).round(2)		
 	end
 
 	def precioDescuento

@@ -9,6 +9,9 @@
 		<%= (articulo.precio).round(2) %>
 	</td>
 	<td>
+		<%= (articulo.precio * 1.85).round(2) %>
+	</td>
+	<td>
 		<%= (articulo.precio - ((articulo.precio * articulo.descuento)/100)).round(2) %>
 	</td>
 	<td>

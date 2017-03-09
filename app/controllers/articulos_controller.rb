@@ -7,7 +7,7 @@ class ArticulosController < ApplicationController
 	end
 
 	def index
-		@proveedores = Proveedor.all
+		@proveedores = Proveedor.all.order('nombre')
 	end
 
   def upload
