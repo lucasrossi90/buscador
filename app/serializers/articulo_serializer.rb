@@ -17,12 +17,12 @@ class ArticuloSerializer < ActiveModel::Serializer
 		(object.listum.fecha_precio).strftime('%m/%Y')
 	end
 
-	def precioMasGanancia
-		(object.precio* 1.85).round(2)		
-	end
-
 	def precioDescuento
 		(object.precio - ((object.precio * object.descuento)/100)).round(2)
+	end
+
+	def precioMasGanancia
+		(precioDescuento * 1.85).round(2)
 	end
 
 	def precioIva
