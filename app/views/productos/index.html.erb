@@ -11,7 +11,7 @@
               class: "form-control typeahead" %>       
       </div>
       <div class="col-md-3">
-            <%= select_tag :orden, options_for_select([[ "Ordenado por CÓDIGO INTERNO" , "codigo_interno" ], [ "Ordenado por CÓDIGO INTERNO" , "codigo_original" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]], ["codigo"]), class: 'form-control' %>
+            <%= select_tag :orden, options_for_select([["Ordenado por CÓDIGO INTERNO" , "codigo_original" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]], ["codigo"]), class: 'form-control' %>
       </div>  
       <div class="col-md-4">
              <%= select_tag :rubro, options_from_collection_for_select(@rubros, :id, :nombre), include_blank: 'Seleccionar RUBRO...', class: 'form-control' %>
