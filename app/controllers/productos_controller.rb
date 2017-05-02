@@ -1,14 +1,18 @@
 class ProductosController < ApplicationController
 
+	def new
+		@articulo = Articulo.new
+	end
+
 	def index
 		@rubros = Rubro.all
 	end
 	
 	def resultado_productos
 	    if params[:interno]
-	   		@producto = Producto.search_interno(params[:interno])
-	    elsif params[:search]
-	      	@productos = Producto.search(params[:search], params[:rubro], params[:orden], params[:page])     
+	   		@productos = Producto.search_interno(params[:interno])
+	    elsif params[:codigodesc]
+	      	@productos = Producto.search_codigodesc(params[:codigodesc], params[:rubro], params[:orden], params[:page])     
 	    else
 	      	@productos = Producto.all
 	    end

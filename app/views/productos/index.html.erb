@@ -7,14 +7,16 @@
               class: "form-control typeahead" %>       
       </div>
       <div class="col-md-5">
-              <%= text_field_tag :search, params[:search], placeholder: 'Ingrese CÓDIGO o DESCRIPCIÓN', size:60, 
+              <%= text_field_tag :codigodesc, params[:codigodesc], placeholder: 'Ingrese CÓDIGO o DESCRIPCIÓN', size:60, 
               class: "form-control typeahead" %>       
       </div>
       <div class="col-md-3">
-            <%= select_tag :orden, options_for_select([["Ordenado por CÓDIGO INTERNO" , "codigo_original" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]], ["codigo"]), class: 'form-control' %>
+            <%= select_tag :orden, options_for_select([["Ordenado por CÓDIGO ORIGINAL" , "codigo_original" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]]), 
+            class: 'form-control typeahead' %>
       </div>  
       <div class="col-md-4">
-             <%= select_tag :rubro, options_from_collection_for_select(@rubros, :id, :nombre), include_blank: 'Seleccionar RUBRO...', class: 'form-control' %>
+             <%= select_tag :rubro, options_from_collection_for_select(@rubros, :id, :nombre), include_blank: 'Seleccionar RUBRO...', 
+             class: 'form-control typeahead' %>
       </div>
     </div>
 	<% end %>
@@ -24,15 +26,11 @@
   
   <table class="table table-striped">
     <tr>
-      <th>Codigo</th>
+      <th>Interno</th>
+      <th>Original</th>
       <th>Descripcion</th>
-      <th>Precio</th>
-      <th>Precio c/desc.</th>
-      <th>Precio +21%</th>
-      <th>Lista</th>
-      <th>Descuento</th>
       <th>Rubro</th>
-      <th>Fecha precio</th>
+      <th>Ubicación</th>
     </tr>
     <tbody id="resultado">
     </tbody>

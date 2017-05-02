@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   get 'articulos/articulos_lista', to: 'articulos#articulos_lista'
   get 'articulos/mostrar_lista', to: 'articulos#mostrar_lista'
  
+  get 'productos/resultado_productos/', to: 'productos#resultado_productos'
+
   post 'articulos/import_excel', to: 'articulos#import_excel'
 
   resources :articulos
   resources :lista
   resources :productos
+  
   root "articulos#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

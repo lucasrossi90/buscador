@@ -1,6 +1,4 @@
 class Producto < ActiveRecord::Base
-	has_many :articulos
-
 	 def cargar_productos
 		book = Roo::Spreadsheet.open('PRODUCTOS.xls')
 		book.sheet(0).each do |row|
@@ -13,22 +11,16 @@ class Producto < ActiveRecord::Base
 	    end
 	end
 
-	def self.search(descripcion, rubro = nil, orden, page)
-		query = where("(articulos.codigo ILIKE ? OR articulos.descripcion ILIKE ?)", 
-			"%#{descripcion}%", "%#{descripcion}%").order(orden).limit(50).offset((page.to_i) * 50)
-    if proveedor.present?
-      query = query.joins(:listum).where('lista.proveedor_id = ?', proveedor)
-    end
-    query.includes(:listum)
+	def self.search_interno(interno)
+		query = where("(productos.codigo_interno == ?)", "%#{interno}%")
 	end
 
-	def self.search(descripcion, rubro = nil, orden, page)
-		query = where("(articulos.codigo ILIKE ? OR articulos.descripcion ILIKE ?)", 
-			"%#{descripcion}%", "%#{descripcion}%").order(orden).limit(50).offset((page.to_i) * 50)
-    if proveedor.present?
-      query = query.joins(:listum).where('lista.proveedor_id = ?', proveedor)
-    end
-    query.includes(:listum)
+	def self.search_codigodesc(codigodesc, rubro = nil, orden, page)
+		query = where("(productos.codigo_original ILIKE ? OR productos.descripcion ILIKE ?)", 
+			"%#{codigodesc}%", "%#{codigodesc}%").order(orden).limit(50).offset((page.to_i) * 50)
+		if rubro.present?
+      		query = query.joins(:rubro).where('productos.rubro = ?', rubro)
+    	end
 	end
 
 
