@@ -1,7 +1,7 @@
 class ProductosController < ApplicationController
 
 	def new
-		@articulo = Articulo.new
+		@producto = Producto.new
 	end
 
 	def index

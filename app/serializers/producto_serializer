@@ -1,0 +1,8 @@
+class ArticuloSerializer < ActiveModel::Serializer
+  attributes :id, 
+			  :codigo_interno, 
+			  :codigo_original,
+			  :descripcion,
+			  :rubro,
+			  :ubicacion
+			  

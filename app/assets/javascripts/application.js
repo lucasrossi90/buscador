@@ -16,7 +16,5 @@
 //= require moment
 //= require bootstrap-sortable
 //= require twitter/typeahead
-//= require bootstrap-datepicker
 //= require handlebars
-//= require articulos
 //= require_tree .

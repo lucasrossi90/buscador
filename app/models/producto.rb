@@ -1,4 +1,5 @@
 class Producto < ActiveRecord::Base
+	
 	 def cargar_productos
 		book = Roo::Spreadsheet.open('PRODUCTOS.xls')
 		book.sheet(0).each do |row|

@@ -11,11 +11,8 @@ $('document').ready(function(){
               limit: 100
           }
       });
-      // initialize the bloodhound suggestion engine
-      productos.initialize();
-      var source = $("#productos-script").html();
-      var template = Handlebars.compile(source);
 
+      productos.initialize();
       // instantiate the typeahead UI
       $('#codigodesc').typeahead(null, {
         displayKey: 'productos',
@@ -38,7 +35,7 @@ $('document').ready(function(){
 
     pagina_actual = 0;
     
-    buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
+    buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&codigodesc=%QUERY' + '&page=' + pagina_actual);
           
  /*   $('#button_anterior').hide();
       
@@ -76,6 +73,12 @@ $('document').ready(function(){
     $('#codigodesc').bind('typeahead:render', function() {
       $('#resultado').html($('.tt-dataset').html());
     });
+
+
+      // initialize the bloodhound suggestion engine
+      
+      var source = $("productos-script").html();
+      var template = Handlebars.compile(source);
 
     // function actualizarResultados() {
     //   $.get('/articulos/resultado_articulos', { search: $('#search').val() })
