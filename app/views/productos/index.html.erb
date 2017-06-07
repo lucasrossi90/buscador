@@ -1,4 +1,5 @@
-<%= javascript_include_tag 'productos' %>
+<%= javascript_include_tag 'productos_desc' %>
+<%= javascript_include_tag 'productos_interno' %>
 
   <div class="container">  
   <%= form_tag(productos_path, :method => "get", id: "search-form") do %>
@@ -15,24 +16,32 @@
             <%= select_tag :orden, options_for_select([["Ordenado por CÓDIGO ORIGINAL" , "codigo_original" ], ["Ordenado por DESCRIPCIÓN" , "descripcion" ]]), 
             class: 'form-control typeahead' %>
       </div>  
-      <div class="col-md-4">
+      <div class="col-md-3">
              <%= select_tag :rubro, options_from_collection_for_select(@rubros, :id, :nombre), include_blank: 'Seleccionar RUBRO...', 
              class: 'form-control typeahead' %>
       </div>
+
     </div>
+ 
 	<% end %>
   </div>
 
   <%= render partial: 'productostype' %>
   
-  <table class="table table-striped">
+  <table id="tabla-productos" class="table table-striped">
     <tr>
       <th>Interno</th>
       <th>Original</th>
       <th>Descripcion</th>
       <th>Rubro</th>
       <th>Ubicación</th>
+      <th>Acciones</th>
     </tr>
     <tbody id="resultado">
     </tbody>
   </table>
+
+    <div id="botones_paginacion" class="btn-group center-block" role="group" aria-label="button_paginacion">
+    <button id="button_anterior" type="button" class="btn btn-success">Anterior</button>
+    <button id="button_siguiente" type="button" class="btn btn-success">Siguiente</button>
+  </div>

@@ -13,6 +13,8 @@ $('document').ready(function(){
       });
 
       productos.initialize();
+      var source = $("#productos-script").html();
+      var template = Handlebars.compile(source);
       // instantiate the typeahead UI
       $('#codigodesc').typeahead(null, {
         displayKey: 'productos',
@@ -35,41 +37,44 @@ $('document').ready(function(){
 
     pagina_actual = 0;
     
-    buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&codigodesc=%QUERY' + '&page=' + pagina_actual);
+   buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&codigodesc=%QUERY' + '&page=' + pagina_actual);
+
+    
+
           
- /*   $('#button_anterior').hide();
+   $('#button_anterior').hide();
       
      $('#button_siguiente').click(function(){
       $('#search').typeahead('destroy');
       pagina_actual = pagina_actual + 1;
-      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
+      buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&codigodesc=%QUERY' + '&page=' + pagina_actual);
       $('#button_anterior').show();
-      $('#search').focus();
+      $('#codigodesc').focus();
     });
 
       $('#button_anterior').click(function(){
-        $('#search').typeahead('destroy');
+        $('#codigodesc').typeahead('destroy');
         pagina_actual = pagina_actual - 1;
-        buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&search=%QUERY' + '&page=' + pagina_actual);
-        $('#search').focus();
+        buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&codigodesc=%QUERY' + '&page=' + pagina_actual);
+        $('#codigodesc').focus();
         if (pagina_actual == 0){
           $('#button_anterior').hide();
         }
       });
 
     $('#orden').change(function() {
-      $('#search').typeahead('destroy');
-      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $(this).val() + '&search=%QUERY');
-      $('#search').focus();
+      $('#codigodesc').typeahead('destroy');
+      buildTypeahead('/productos/resultado_productos?orden=productos.' + $(this).val() + '&codigodesc=%QUERY');
+      $('#codigodesc').focus();
     });
 
-    $('#proveedor').change(function() {
+    $('#rubro').change(function() {
       $('#search').typeahead('destroy');
-      buildTypeahead('/articulos/resultado_articulos?orden=articulos.' + $('#orden').val() + '&proveedor='+ $(this).val() +
-        '&search=%QUERY');
-      $('#search').focus();
+      buildTypeahead('/productos/resultado_productos?orden=productos.' + $('#orden').val() + '&rubro='+ $(this).val() +
+        '&codigodesc=%QUERY');
+      $('#codigodesc').focus();
     });
-*/
+
     $('#codigodesc').bind('typeahead:render', function() {
       $('#resultado').html($('.tt-dataset').html());
     });
@@ -77,8 +82,6 @@ $('document').ready(function(){
 
       // initialize the bloodhound suggestion engine
       
-      var source = $("productos-script").html();
-      var template = Handlebars.compile(source);
 
     // function actualizarResultados() {
     //   $.get('/articulos/resultado_articulos', { search: $('#search').val() })

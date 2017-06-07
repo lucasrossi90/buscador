@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal_edit" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar </h4>
+      </div>
+      <div class="modal-body">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Número interno</span>
+            <input type="text" value="<%= @producto.codigo_interno %>" class="form-control" aria-describedby="basic-addon1">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

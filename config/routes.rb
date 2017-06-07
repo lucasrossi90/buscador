@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'articulos/resultado_articulos/', to: 'articulos#resultado_articulos'
   get 'articulos/articulos_lista', to: 'articulos#articulos_lista'
   get 'articulos/mostrar_lista', to: 'articulos#mostrar_lista' 
-  get 'productos/resultado_productos/', to: 'productos#resultado_productos'
+  get 'productos/resultado_productos', to: 'productos#resultado_productos'
   post 'articulos/import_excel', to: 'articulos#import_excel'
 
   resources :articulos

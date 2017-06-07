@@ -17,4 +17,4 @@
 //= require bootstrap-sortable
 //= require twitter/typeahead
 //= require handlebars
-//= require_tree .
+

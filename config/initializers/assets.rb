@@ -10,5 +10,6 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( articulos.js )
-Rails.application.config.assets.precompile += %w( productos.js )
+Rails.application.config.assets.precompile += %w( productos_desc.js )
+Rails.application.config.assets.precompile += %w( productos_interno.js )
 Rails.application.config.assets.precompile += %w( bootstrap-datepicker.js )
